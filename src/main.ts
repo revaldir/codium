@@ -1,7 +1,7 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { PrismaClientExceptionFilter } from './prisma-client-exception/prisma-client-exception.filter';
 
 async function bootstrap() {
@@ -12,6 +12,9 @@ async function bootstrap() {
    * option whitelist: ValidationPipe will automatically remove all non-whitelisted properties, where “non-whitelisted” means properties without any validation decorators.
    */
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
+  // Interceptor to remove field from response
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   // Swagger setup
   const config = new DocumentBuilder()
