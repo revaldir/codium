@@ -24,13 +24,25 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Codium, A 'Medium'-like blog application for coding-related topics. Created using [Nest](https://github.com/nestjs/nest) framework.
 
-## Installation
+## Installation Guide
 
-```bash
-$ npm install
-```
+- Make a copy of `env` to `.env`
+- Adjust the `DATABASE_URL` variables accordingly. This repo uses mysql as the provider, learn how to use other providers [here](https://www.prisma.io/docs/concepts/database-connectors)
+- Install dependencies:
+  ```bash
+  $ npm install
+  ```
+- Generate Prisma based on defined schema:
+  ```bash
+  $ npx prisma generate
+  ```
+- Seed database:
+  ```bash
+  $ npx prisma db seed
+  ```
+
 
 ## Running the app
 
@@ -58,6 +70,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Demo and API Reference
+
+Once the app is running, redirect to `http://{HOST}/api/` for more detailed API Reference, provided using OpenAPI and Swagger.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -71,3 +87,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Future Plans
+
+This app currently only provides the API, the Frontend app is still WIP. :)
