@@ -21,6 +21,7 @@ async function bootstrap() {
     .setTitle('Codium')
     .setDescription('The Codium API Documentation')
     .setVersion('0.0.1')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
